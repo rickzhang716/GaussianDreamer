@@ -35,19 +35,28 @@ Colab demo: [![Open In Colab](https://colab.research.google.com/assets/colab-bad
 **Installation**
 Install [3D Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting) and [Shap-E](https://github.com/openai/shap-e#usage) as fellow:
 ```
+git clone https://github.com/hustvl/GaussianDreamer.git 
+cd GaussianDreamer
 pip install torch==2.0.1+cu117 torchvision==0.15.2+cu117 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu117
 pip install ninja
 pip install -r requirements.txt
 
-git clone https://github.com/hustvl/GaussianDreamer.git 
-cd GaussianDreamer
+cd ./gaussiansplatting/submodules/
 
-pip install ./gaussiansplatting/submodules/diff-gaussian-rasterization
-pip install ./gaussiansplatting/submodules/simple-knn
+rm -rf diff-gaussian-rasterization
+git clone --recursive git@github.com:ashawkey/diff-gaussian-rasterization.git 
+
+pip install ./
+pip install ./simple-knn
+
+cd ../..
+
 
 git clone https://github.com/openai/shap-e.git
 cd shap-e
 pip install -e .
+
+
 ```
 Download [finetuned Shap-E](https://huggingface.co/datasets/tiange/Cap3D/tree/main/our_finetuned_models) by Cap3D, and put it in `./load`
 
